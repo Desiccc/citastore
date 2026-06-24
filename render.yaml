@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: citastore
+    runtime: php
+    region: singapore
+    plan: free
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan key:generate
+      npm ci && npm run build
+    startCommand: ./start.sh
+    envVars:
+      - key: APP_NAME
+        value: CitaStore
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: APP_URL
+        fromService:
+          name: citastore
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: LOG_CHANNEL
+        value: stderr
+databases:
+  - name: citastore-db
+    databaseName: citastore
+    plan: free
+    region: singapore
+    ipAllowList: []
+    postgresMajorVersion: 16
