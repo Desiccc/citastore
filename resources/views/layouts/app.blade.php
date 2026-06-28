@@ -7,7 +7,12 @@
     <title>{{ config('app.name') }} - Belanja Mudah & Aman</title>
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito:wght@300;400;600;700;800" rel="stylesheet">
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @else
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    @endif
 </head>
 <body>
     <div id="app">
