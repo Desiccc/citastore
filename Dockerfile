@@ -36,26 +36,22 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/Allo
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy composer files first for better caching
-COPY composer.json composer.lock ./
-
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
-
-# Install Node.js 22.x (required by Vite 7)
+# Install Node.js 22.x (required by Vite)
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy package files and install Node dependencies
-COPY package.json package-lock.json ./
-RUN npm install && npm run build
+# Set working directory
+WORKDIR /var/www/html
 
-# Copy application code
+# Copy entire application
 COPY . .
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+
+# Build frontend assets
+RUN npm install && npm run build
 
 # Create .env from example
 RUN cp .env.example .env
