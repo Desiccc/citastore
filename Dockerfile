@@ -70,15 +70,24 @@ RUN cat > /usr/local/bin/start.sh << 'SCRIPT'
 #!/usr/bin/env bash
 set -e
 
-# Sanitize env vars that may contain CR/LF/TAB from Railway injection
-for var in APP_URL APP_KEY DB_HOST DB_DATABASE DB_USERNAME DB_PASSWORD; do
-  val=$(printf "%s" "${!var}" | tr -d '\r\n\t' || true)
-  export "$var"="$val"
-done
+echo "[STARTUP] Sanitizing env vars via PHP..." >&2
+php -r '
+$vars = getenv();
+foreach ($vars as $k => $v) {
+    if (is_string($v) && preg_match("/[\r\n\t]/", $v)) {
+        fwrite(STDERR, "[STARTUP] DIRTY: $k contains CR/LF/TAB\n");
+        putenv("$k=" . str_replace(["\r","\n","\t"], "", $v));
+    }
+}
+$url = "http://0.0.0.0:" . (getenv("PORT") ?: "80");
+putenv("APP_URL=$url");
+fwrite(STDERR, "[STARTUP] APP_URL=$url\n");
+fwrite(STDERR, "[STARTUP] Sanitization complete\n");
+'
 
 echo "[STARTUP] Starting Apache..." >&2
 
-# Run migrations (non-fatal)
+echo "[STARTUP] Running migrations..." >&2
 php artisan migrate --force 2>&1 || echo "[STARTUP] Migration skipped" >&2
 
 exec apache2-foreground
