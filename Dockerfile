@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    nodejs \
-    npm \
     && docker-php-ext-install \
     pdo_pgsql \
     pgsql \
@@ -46,6 +44,11 @@ COPY composer.json composer.lock ./
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+
+# Install Node.js 22.x (required by Vite 7)
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy package files and install Node dependencies
 COPY package.json package-lock.json ./
