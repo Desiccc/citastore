@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
-set -e
 
+echo "[STARTUP] Script started" >&2
+
+# Remove dangerous chars from all env vars
 echo "[STARTUP] Sanitizing env vars..." >&2
-
-# Read env vars from /proc/self/environ (null-delimited, handles multiline)
 while IFS= read -r -d '' entry; do
   k="${entry%%=*}"
   v="${entry#*=}"
-  clean=$(printf "%s" "$v" | tr -d '\r\n\t' || true)
+  clean=$(printf "%s" "$v" | tr -d '\r\n\t')
   if [ "$v" != "$clean" ] 2>/dev/null; then
-    echo "[STARTUP] DIRTY: $k contains CR/LF/TAB" >&2
+    echo "[STARTUP] DIRTY: $k" >&2
   fi
-  export "$k"="$clean"
-done < /proc/self/environ
+  export "$k"="$clean" 2>/dev/null || true
+done < /proc/self/environ 2>/dev/null || true
 
 export APP_URL="http://0.0.0.0:${PORT:-80}"
 echo "[STARTUP] APP_URL=$APP_URL" >&2

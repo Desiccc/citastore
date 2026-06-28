@@ -65,8 +65,8 @@ RUN php artisan storage:link --force || true
 # Fix storage permissions for web server
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy and set up startup script as ENTRYPOINT
+# Copy and set up startup script
 COPY start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 
-ENTRYPOINT ["/usr/local/bin/start.sh"]
+CMD ["/usr/local/bin/start.sh"]
