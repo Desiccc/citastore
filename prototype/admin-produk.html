@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Produk - Toko Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #f1f5f9; }
+        .navbar { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .sidebar-item { transition: all 0.2s ease; }
+        .sidebar-item:hover { background: #eef2ff; transform: translateX(4px); }
+        .sidebar-item.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .badge-stock { padding: 0.25em 0.75em; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">🛍️</span>
+                    <span class="font-bold text-xl">Toko Online</span>
+                    <span class="ml-4 px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">ADMIN</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-white/90">Admin</span>
+                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold">AD</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="flex flex-wrap justify-between items-center mb-6">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">📦 Manajemen Produk</h1>
+                <p class="text-gray-500 mt-1">Kelola semua produk toko Anda</p>
+            </div>
+            <button class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                <span>+</span> Tambah Produk
+            </button>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden card-hover">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm">
+                            <th class="px-6 py-4 text-left font-semibold">Foto</th>
+                            <th class="px-6 py-4 text-left font-semibold">Nama Produk</th>
+                            <th class="px-6 py-4 text-left font-semibold">Kategori</th>
+                            <th class="px-6 py-4 text-left font-semibold">Harga</th>
+                            <th class="px-6 py-4 text-left font-semibold">Stok</th>
+                            <th class="px-6 py-4 text-right font-semibold">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4"><div class="w-14 h-14 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl flex items-center justify-center text-xl">👟</div></td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Sepatu Running Pro</td>
+                            <td class="px-6 py-4"><span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Sepatu</span></td>
+                            <td class="px-6 py-4 font-semibold text-indigo-600">Rp 250.000</td>
+                            <td class="px-6 py-4"><span class="badge-stock bg-green-100 text-green-700">50 pcs</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4"><div class="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl flex items-center justify-center text-xl">👕</div></td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Kaos Polos Premium</td>
+                            <td class="px-6 py-4"><span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Baju</span></td>
+                            <td class="px-6 py-4 font-semibold text-indigo-600">Rp 89.000</td>
+                            <td class="px-6 py-4"><span class="badge-stock bg-green-100 text-green-700">120 pcs</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4"><div class="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 rounded-xl flex items-center justify-center text-xl">🎒</div></td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Tas Ransel Outdoor</td>
+                            <td class="px-6 py-4"><span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Aksesoris</span></td>
+                            <td class="px-6 py-4 font-semibold text-indigo-600">Rp 350.000</td>
+                            <td class="px-6 py-4"><span class="badge-stock bg-red-100 text-red-700">0 pcs</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4"><div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl flex items-center justify-center text-xl">⌚</div></td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Jam Tangan Smart</td>
+                            <td class="px-6 py-4"><span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Aksesoris</span></td>
+                            <td class="px-6 py-4 font-semibold text-indigo-600">Rp 1.200.000</td>
+                            <td class="px-6 py-4"><span class="badge-stock bg-green-100 text-green-700">25 pcs</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

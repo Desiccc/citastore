@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@content('content')
+@section('content')
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,7 +9,7 @@
                     ➕ Tambah Produk Baru
                 </div>
                 <div class="card-body p-4">
-                    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Kategori</label>
@@ -44,7 +44,7 @@
                             <div class="form-text">Format: JPG, PNG. Maksimal 2MB.</div>
                         </div>
                         <div class="d-flex gap-3">
-                            <a href="{{ route('products.index') }}" class="btn btn-outline-secondary rounded-3 px-4">Kembali</a>
+                            <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary rounded-3 px-4">Kembali</a>
                             <button type="submit" class="btn btn-success rounded-3 px-4 fw-semibold">💾 Simpan Produk</button>
                         </div>
                     </form>
@@ -53,4 +53,4 @@
         </div>
     </div>
 </div>
-@endcontent
+@endsection

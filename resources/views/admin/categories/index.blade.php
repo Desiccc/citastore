@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@content('content')
+@section('content')
 <div class="container py-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 animate-on-scroll">
         <h2 class="fw-bold mb-0">📂 Manajemen Kategori</h2>
@@ -49,4 +49,4 @@
         </div>
     </div>
 </div>
-@endcontent
+@endsection

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@content('content')
+@section('content')
 <div class="container py-4 animate-fade-in">
     @if(session('success'))
         <div class="alert alert-success text-center shadow-sm animate-slide-up">{{ session('success') }}</div>
@@ -83,4 +83,4 @@
         </div>
     </div>
 </div>
-@endcontent
+@endsection

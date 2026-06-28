@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@content('content')
+@section('content')
 <div class="hero-section bg-gradient-hero text-white py-5 mb-5">
     <div class="container position-relative" style="z-index: 1;">
         <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -131,4 +131,4 @@
         </div>
     </div>
 </div>
-@endcontent
+@endsection

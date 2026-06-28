@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Kategori - Toko Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #f1f5f9; }
+        .navbar { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .badge-cat { padding: 0.25em 0.75em; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <nav class="navbar text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">🛍️</span>
+                    <span class="font-bold text-xl">Toko Online</span>
+                    <span class="ml-4 px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">ADMIN</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="flex flex-wrap justify-between items-center mb-6">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">📂 Manajemen Kategori</h1>
+                <p class="text-gray-500 mt-1">Kelola kategori produk</p>
+            </div>
+            <button class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                <span>+</span> Tambah Kategori
+            </button>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden card-hover">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm">
+                            <th class="px-6 py-4 text-left font-semibold">#</th>
+                            <th class="px-6 py-4 text-left font-semibold">Nama Kategori</th>
+                            <th class="px-6 py-4 text-left font-semibold">Jumlah Produk</th>
+                            <th class="px-6 py-4 text-right font-semibold">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-400">1</td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Sepatu</td>
+                            <td class="px-6 py-4"><span class="badge-cat bg-indigo-100 text-indigo-700">12 produk</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-400">2</td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Baju</td>
+                            <td class="px-6 py-4"><span class="badge-cat bg-indigo-100 text-indigo-700">8 produk</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-400">3</td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Aksesoris</td>
+                            <td class="px-6 py-4"><span class="badge-cat bg-indigo-100 text-indigo-700">15 produk</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-bold text-gray-400">4</td>
+                            <td class="px-6 py-4 font-semibold text-gray-800">Celana</td>
+                            <td class="px-6 py-4"><span class="badge-cat bg-indigo-100 text-indigo-700">6 produk</span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-xl text-sm font-semibold hover:bg-yellow-500 transition">✏️ Edit</button>
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition ml-2">🗑️ Hapus</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

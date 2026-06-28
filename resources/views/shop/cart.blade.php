@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@content('content')
+@section('content')
 <div class="container py-4">
     <h2 class="fw-bold mb-4 animate-on-scroll">🛒 Keranjang Belanja</h2>
 
@@ -117,4 +117,4 @@
         @endif
     </div>
 </div>
-@endcontent
+@endsection

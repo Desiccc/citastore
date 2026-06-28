@@ -1,10 +1,15 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+});
 
 Route::get('/', function () {
     return view('welcome');

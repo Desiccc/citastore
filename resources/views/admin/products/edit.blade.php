@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@content('content')
+@section('content')
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,7 +9,7 @@
                     ✏️ Edit Produk
                 </div>
                 <div class="card-body p-4">
-                    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="d-flex gap-3">
-                            <a href="{{ route('products.index') }}" class="btn btn-outline-secondary rounded-3 px-4">Kembali</a>
+                            <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary rounded-3 px-4">Kembali</a>
                             <button type="submit" class="btn btn-warning rounded-3 px-4 fw-semibold">🔄 Perbarui Produk</button>
                         </div>
                     </form>
@@ -59,4 +59,4 @@
         </div>
     </div>
 </div>
-@endcontent
+@endsection

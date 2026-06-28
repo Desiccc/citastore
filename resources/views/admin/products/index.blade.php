@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@content('content')
+@section('content')
 <div class="container py-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 animate-on-scroll">
         <h2 class="fw-bold mb-0">📦 Manajemen Produk</h2>
-        <a href="{{ route('products.create') }}" class="btn btn-primary rounded-3 px-4 fw-semibold shadow-sm">+ Tambah Produk</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary rounded-3 px-4 fw-semibold shadow-sm">+ Tambah Produk</a>
     </div>
 
     @if(session('success'))
@@ -45,8 +45,8 @@
                             </td>
                             <td class="pe-4">
                                 <div class="d-flex gap-2">
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm rounded-3 fw-semibold px-3">✏️ Edit</a>
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
+                                    <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning btn-sm rounded-3 fw-semibold px-3">✏️ Edit</a>
+                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm rounded-3 fw-semibold px-3" onclick="return confirm('Yakin ingin menghapus produk ini?')">🗑️ Hapus</button>
@@ -60,7 +60,7 @@
                                 <div class="py-4">
                                     <h5 class="text-muted mb-2">Belum ada produk</h5>
                                     <p class="text-muted mb-3">Tambahkan produk pertama Anda.</p>
-                                    <a href="{{ route('products.create') }}" class="btn btn-primary rounded-3">+ Tambah Produk</a>
+                                    <a href="{{ route('admin.products.create') }}" class="btn btn-primary rounded-3">+ Tambah Produk</a>
                                 </div>
                             </td>
                         </tr>
@@ -70,4 +70,4 @@
         </div>
     </div>
 </div>
-@endcontent
+@endsection
