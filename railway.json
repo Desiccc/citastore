@@ -2,7 +2,7 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "composer install --no-dev --optimize-autoloader && npm install && npm run build"
+    "buildCommand": "cp .env.example .env 2>/dev/null || true && composer install --no-dev --optimize-autoloader && php artisan package:discover --ansi && npm install && npm run build"
   },
   "deploy": {
     "startCommand": "php artisan serve --host=0.0.0.0 --port=$PORT",
