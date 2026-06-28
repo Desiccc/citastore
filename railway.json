@@ -5,8 +5,7 @@
     "buildCommand": "cp .env.example .env 2>/dev/null || true && composer install --no-dev --optimize-autoloader && npm install && npm run build"
   },
   "deploy": {
-    "startCommand": "php artisan serve --host=0.0.0.0 --port=$PORT",
-    "preDeployCommand": "php artisan migrate --force",
+    "startCommand": "bash start.sh",
     "healthcheckPath": "/",
     "restartPolicyType": "ON_FAILURE"
   }
