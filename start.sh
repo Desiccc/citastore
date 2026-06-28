@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
 set -e
 
+# Sanitize env vars that may contain CR/LF/TAB from Railway Docker injection
+sanitize() {
+  for var in "$@"; do
+    val=$(printf '%s' "${!var}" | tr -d '\r\n\t' || true)
+    export "$var"="$val"
+  done
+}
+
+sanitize APP_URL APP_KEY DB_HOST DB_DATABASE DB_USERNAME DB_PASSWORD
+
+# Override APP_URL with a clean value based on Railway PORT
+export APP_URL="http://0.0.0.0:${PORT:-8080}"
+
 echo "[STARTUP] Starting container..." >&2
 echo "[STARTUP] PHP version: $(php -v 2>&1 | head -1)" >&2
-echo "[STARTUP] Working directory: $(pwd)" >&2
 echo "[STARTUP] PORT: ${PORT:-not set}" >&2
-echo "[STARTUP] APP_ENV: ${APP_ENV:-not set}" >&2
-echo "[STARTUP] DB_CONNECTION: ${DB_CONNECTION:-not set}" >&2
+echo "[STARTUP] APP_URL: ${APP_URL}" >&2
+echo "[STARTUP] ENV dump:" >&2
+env | sort >&2 || true
 
 if [ -f .env ]; then
     echo "[STARTUP] .env file exists" >&2
