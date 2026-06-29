@@ -46,7 +46,7 @@
                             <div class="form-text">Kosongkan jika tidak ingin mengganti foto.</div>
                             <div class="mt-2">
                                 <small class="text-muted">Foto saat ini:</small>
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="img" width="80" height="80" class="rounded-3 mt-1" style="object-fit: cover;">
+                                <img src="{{ $product->image_url }}" alt="img" width="80" height="80" class="rounded-3 mt-1" style="object-fit: cover;">
                             </div>
                         </div>
                         <div class="d-flex gap-3">

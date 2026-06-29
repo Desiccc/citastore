@@ -20,7 +20,7 @@
     <div class="row g-4 mb-5">
         <div class="col-md-6 animate-on-scroll">
             <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
-                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-100" style="object-fit: cover; max-height: 450px;">
+                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-100" style="object-fit: cover; max-height: 450px;">
             </div>
         </div>
         <div class="col-md-6 animate-on-scroll">
@@ -65,7 +65,7 @@
                     <div class="col animate-on-scroll">
                         <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
                             <a href="{{ route('shop.show', $item->id) }}" style="height: 180px;" class="overflow-hidden">
-                                <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top h-100 w-100" alt="{{ $item->name }}" style="object-fit: cover;">
+                                <img src="{{ $item->image_url }}" class="card-img-top h-100 w-100" alt="{{ $item->name }}" style="object-fit: cover;">
                             </a>
                             <div class="card-body d-flex flex-column">
                                 <h6 class="card-title fw-bold text-truncate">{{ $item->name }}</h6>

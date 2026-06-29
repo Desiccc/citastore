@@ -90,7 +90,7 @@
                     <div class="col animate-on-scroll">
                         <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
                             <div class="position-relative overflow-hidden" style="height: 200px;">
-                                <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top h-100 w-100" alt="{{ $product->name }}" style="object-fit: cover;">
+                                <img src="{{ $product->image_url }}" class="card-img-top h-100 w-100" alt="{{ $product->name }}" style="object-fit: cover;">
                                 <span class="badge bg-gradient-primary position-absolute top-0 end-0 m-2">{{ $product->category->name }}</span>
                                 @if($product->stock < 1)
                                     <span class="badge bg-danger position-absolute top-0 start-0 m-2">Habis</span>

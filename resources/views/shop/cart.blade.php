@@ -32,7 +32,7 @@
                                 <tr>
                                     <td class="ps-4">
                                         <div class="d-flex align-items-center gap-3">
-                                            <img src="{{ asset('storage/' . $item->product->image) }}" width="60" height="60" class="rounded-3" style="object-fit: cover;">
+                                            <img src="{{ $item->product->image_url }}" width="60" height="60" class="rounded-3" style="object-fit: cover;">
                                             <div>
                                                 <h6 class="mb-0 fw-semibold">{{ $item->product->name }}</h6>
                                                 <small class="text-muted">{{ $item->product->category->name }}</small>
