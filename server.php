@@ -29,6 +29,14 @@ if (file_exists($envFile)) {
     }
 }
 
+// Detect actual Railway URL and set as APP_URL for proper asset generation
+$host = $_SERVER['HTTP_X_FORWARDED_HOST'] ?? $_SERVER['HTTP_HOST'] ?? 'localhost';
+$scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? 'http';
+$appUrl = "$scheme://$host";
+$_SERVER['APP_URL'] = $appUrl;
+$_ENV['APP_URL'] = $appUrl;
+putenv("APP_URL=$appUrl");
+
 // Sanitize all $_SERVER values to prevent Symfony Invalid URI errors
 foreach ($_SERVER as $key => $value) {
     if (is_string($value)) {

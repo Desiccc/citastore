@@ -21,7 +21,7 @@ while IFS= read -r -d '' entry; do
   export "$k"="$clean" 2>/dev/null || true
 done < /proc/self/environ 2>/dev/null || true
 
-export APP_URL="http://0.0.0.0:${PORT:-8080}"
+export APP_URL="http://localhost:${PORT:-8080}"
 export APP_ENV=local
 export APP_DEBUG=true
 
