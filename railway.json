@@ -5,7 +5,7 @@
     "buildCommand": "cp .env.example .env 2>/dev/null || true && composer install --no-dev --optimize-autoloader && npm install && npm run build"
   },
   "deploy": {
-    "startCommand": "bash start.sh",
+    "startCommand": "php -S 0.0.0.0:\"$PORT\" -t public server.php",
     "healthcheckPath": "/healthcheck.html",
     "restartPolicyType": "ON_FAILURE"
   }
