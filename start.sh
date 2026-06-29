@@ -22,9 +22,14 @@ while IFS= read -r -d '' entry; do
 done < /proc/self/environ 2>/dev/null || true
 
 export APP_URL="http://0.0.0.0:${PORT:-8080}"
+export APP_ENV=local
+export APP_DEBUG=true
 
 echo "[STARTUP] DB_HOST=$DB_HOST DB_PORT=$DB_PORT DB_DATABASE=$DB_DATABASE" >&2
 echo "[STARTUP] APP_URL=$APP_URL" >&2
+
+echo "[STARTUP] Generating APP_KEY if missing..." >&2
+php artisan key:generate --force 2>&1 || true
 
 echo "[STARTUP] Running migrations..." >&2
 php artisan migrate --force 2>&1 || echo "[STARTUP] Migration skipped" >&2
