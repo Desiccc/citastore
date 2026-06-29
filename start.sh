@@ -2,8 +2,7 @@
 
 echo "[STARTUP] Script started" >&2
 
-# Remove dangerous chars from all env vars
-echo "[STARTUP] Sanitizing env vars..." >&2
+# Sanitize env vars via /proc/self/environ (null-delimited)
 while IFS= read -r -d '' entry; do
   k="${entry%%=*}"
   v="${entry#*=}"
@@ -15,10 +14,16 @@ while IFS= read -r -d '' entry; do
 done < /proc/self/environ 2>/dev/null || true
 
 export APP_URL="http://0.0.0.0:${PORT:-80}"
-echo "[STARTUP] APP_URL=$APP_URL" >&2
 
+echo "[STARTUP] APP_URL=$APP_URL" >&2
 echo "[STARTUP] Running migrations..." >&2
 php artisan migrate --force 2>&1 || echo "[STARTUP] Migration skipped" >&2
 
-echo "[STARTUP] Starting Apache..." >&2
-exec apache2-foreground
+# Detect server type
+if command -v apache2-foreground &>/dev/null; then
+  echo "[STARTUP] Starting Apache..." >&2
+  exec apache2-foreground
+else
+  echo "[STARTUP] Starting PHP built-in server..." >&2
+  exec php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+fi

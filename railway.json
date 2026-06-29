@@ -1,10 +1,11 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "builder": "DOCKERFILE",
-    "dockerfilePath": "Dockerfile"
+    "builder": "NIXPACKS",
+    "buildCommand": "cp .env.example .env 2>/dev/null || true && composer install --no-dev --optimize-autoloader && npm install && npm run build"
   },
   "deploy": {
+    "startCommand": "bash start.sh",
     "healthcheckPath": "/healthcheck.html",
     "restartPolicyType": "ON_FAILURE"
   }
