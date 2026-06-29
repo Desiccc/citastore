@@ -28,8 +28,13 @@ export APP_DEBUG=true
 echo "[STARTUP] DB_HOST=$DB_HOST DB_PORT=$DB_PORT DB_DATABASE=$DB_DATABASE" >&2
 echo "[STARTUP] APP_URL=$APP_URL" >&2
 
-echo "[STARTUP] Generating APP_KEY if missing..." >&2
+echo "[STARTUP] Generating fresh APP_KEY..." >&2
+# Remove Railway's APP_KEY (might be invalid) and generate a new one
+unset APP_KEY 2>/dev/null || true
 php artisan key:generate --force 2>&1 || true
+# Re-read the generated key from .env into environment
+export APP_KEY=$(grep '^APP_KEY=' .env | cut -d= -f2-) 2>/dev/null || true
+echo "[STARTUP] APP_KEY set" >&2
 
 echo "[STARTUP] Running migrations..." >&2
 php artisan migrate --force 2>&1 || echo "[STARTUP] Migration skipped" >&2
