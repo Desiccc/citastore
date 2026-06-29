@@ -28,6 +28,11 @@ export APP_DEBUG=true
 echo "[STARTUP] DB_HOST=$DB_HOST DB_PORT=$DB_PORT DB_DATABASE=$DB_DATABASE" >&2
 echo "[STARTUP] APP_URL=$APP_URL" >&2
 
+echo "[STARTUP] Clearing cached config (may have stale APP_URL)..." >&2
+rm -f bootstrap/cache/config.php bootstrap/cache/routes.php bootstrap/cache/events.php 2>/dev/null || true
+php artisan config:clear 2>&1 || true
+php artisan route:clear 2>&1 || true
+
 echo "[STARTUP] Generating fresh APP_KEY..." >&2
 # Remove Railway's APP_KEY (might be invalid) and generate a new one
 unset APP_KEY 2>/dev/null || true
