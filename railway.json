@@ -6,6 +6,7 @@
   },
   "deploy": {
     "startCommand": "bash start.sh",
+    "preDeployCommand": "",
     "healthcheckPath": "/healthcheck.html",
     "restartPolicyType": "ON_FAILURE"
   }
